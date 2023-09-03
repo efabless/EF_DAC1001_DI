@@ -1,0 +1,157 @@
+{
+    "info": {
+        "name": "EF_DAC1001_DI",
+        "description": "10-Bit Switching Capacitor Array Digital to Analog Converter (DAC) with a digital interface.",
+        "repo": "https://github.com/efabless/EF_DAC1001_DI",
+        "owner": "Efabless Corporation",
+        "license": "Apache 2.0",
+        "author": "Ahmed Reda",
+        "email": "ahmed.reda@efabless.com",
+        "version": "v1.0.0",
+        "date": "1-9-2023",
+        "category": "ams",
+        "tags": [
+            "dac",
+            "data converter",
+            "peripheral",
+            "analog"
+        ],
+        "bus": [
+            "generic"
+        ],
+        "type": "hard",
+        "status": "verified",
+        "cell_count": "0",
+        "width": "165.120",
+        "height": "360.790",
+        "technology": "sky130",
+        "clock_freq_mhz": "40",
+        "supply_voltage": [
+            "3.3",
+            "1.8"
+        ]
+    },
+    "regs": [
+        {
+            "name": "DATA",
+            "size": "10",
+            "mode": "fw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "data",
+                    "from": "0",
+                    "size": "10",
+                    "port": "data"
+                }
+            ]
+        },
+        {
+            "name": "CTRL",
+            "size": "32",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "en",
+                    "from": "0",
+                    "size": "1",
+                    "port": "EN"
+                }
+            ]
+        },
+        {
+            "name": "FIFOT",
+            "size": "5",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "fifo_threshold",
+                    "from": "0",
+                    "size": "5",
+                    "port": "fifo_threshold"
+                }
+            ]
+        },
+        {
+            "name": "SAMPCTRL",
+            "size": "32",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "clk_en",
+                    "from": "0",
+                    "size": "1",
+                    "port": "clk_en"
+                },
+                {
+                    "name": "clkdiv",
+                    "from": "8",
+                    "size": "20",
+                    "port": "clkdiv"
+                }
+            ]
+        }
+    ],
+    "clock": "clk",
+    "reset": {
+        "name": "rst_n",
+        "pol": "0"
+    },
+    "flags": [
+        {
+            "name": "fifo_empty",
+            "port": "empty"
+        },
+        {
+            "name": "fifo_low",
+            "port": "low"
+        }
+    ],
+    "interface": [
+        {
+            "name": "OUT",
+            "port": "OUT",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "VL",
+            "port": "VL",
+            "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "VH",
+            "port": "VH",
+            "dir": "input",
+            "size": "1"
+        }
+    ],
+    "ports": [
+        {"name": "data", "size": "10", "dir" : "input"},
+        {"name": "clkdiv", "size": "20", "dir" : "input"},
+        {"name": "fifo_threshold", "size": "5", "dir" : "input"},
+        {"name": "wr", "size": "1", "dir" : "input"},
+        {"name": "clk_en", "size": "1", "dir" : "input"},
+        {"name": "EN", "size": "1", "dir" : "input"},
+        {"name": "low", "size": "1", "dir" : "output"},
+        {"name": "empty", "size": "1", "dir" : "output"},
+        {"name": "VL", "size": "1", "dir" : "input"},
+        {"name": "VH", "size": "8", "dir" : "input"},
+        {"name": "OUT", "size": "1", "dir" : "output"}
+    ],
+
+    "fifos": [
+        {
+            "depth": "32",
+            "width": 10,
+            "reg": "data",
+            "type": "w",
+            "control_port": "wr",
+            "data_port":"data"
+        }
+    ]
+}
