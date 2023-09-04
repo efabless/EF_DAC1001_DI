@@ -53,7 +53,7 @@
             "init": "0",
             "fields": [
                 {
-                    "name": "en",
+                    "name": "EN",
                     "from": "0",
                     "size": "1",
                     "port": "EN"
@@ -112,21 +112,75 @@
     ],
     "interface": [
         {
-            "name": "OUT",
-            "port": "OUT",
+            "name": "RST",
+            "port": "RST",
             "dir": "output",
             "size": "1"
         },
         {
-            "name": "VL",
-            "port": "VL",
-            "dir": "input",
+            "name": "EN",
+            "port": "EN",
+            "dir": "output",
             "size": "1"
         },
         {
-            "name": "VH",
-            "port": "VH",
-            "dir": "input",
+            "name": "SELD0",
+            "port": "SELD0",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD1",
+            "port": "SELD1",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD2",
+            "port": "SELD2",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD3",
+            "port": "SELD3",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD4",
+            "port": "SELD4",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD5",
+            "port": "SELD5",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD6",
+            "port": "SELD6",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD7",
+            "port": "SELD7",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD8",
+            "port": "SELD8",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "SELD9",
+            "port": "SELD9",
+            "dir": "output",
             "size": "1"
         }
     ],
@@ -139,9 +193,17 @@
         {"name": "EN", "size": "1", "dir" : "input"},
         {"name": "low", "size": "1", "dir" : "output"},
         {"name": "empty", "size": "1", "dir" : "output"},
-        {"name": "VL", "size": "1", "dir" : "input"},
-        {"name": "VH", "size": "8", "dir" : "input"},
-        {"name": "OUT", "size": "1", "dir" : "output"}
+        {"name": "RST", "size": "1", "dir" : "output"},
+        {"name": "SELD0", "size": "1", "dir" : "output"},
+        {"name": "SELD1", "size": "1", "dir" : "output"},
+        {"name": "SELD2", "size": "1", "dir" : "output"},
+        {"name": "SELD3", "size": "1", "dir" : "output"},
+        {"name": "SELD4", "size": "1", "dir" : "output"},
+        {"name": "SELD5", "size": "1", "dir" : "output"},
+        {"name": "SELD6", "size": "1", "dir" : "output"},
+        {"name": "SELD7", "size": "1", "dir" : "output"},
+        {"name": "SELD8", "size": "1", "dir" : "output"},
+        {"name": "SELD9 ", "size": "1", "dir" : "output"}
     ],
 
     "fifos": [

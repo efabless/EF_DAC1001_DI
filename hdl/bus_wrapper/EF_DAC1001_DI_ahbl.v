@@ -29,9 +29,18 @@
 `define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
 
 module EF_DAC1001_DI_ahbl (
-	output	wire 		OUT,
-	input	wire 		VL,
-	input	wire 		VH,
+	output	wire 		RST,
+	output	wire 		EN,
+	output	wire 		SELD0,
+	output	wire 		SELD1,
+	output	wire 		SELD2,
+	output	wire 		SELD3,
+	output	wire 		SELD4,
+	output	wire 		SELD5,
+	output	wire 		SELD6,
+	output	wire 		SELD7,
+	output	wire 		SELD8,
+	output	wire 		SELD9,
 	input	wire 		HCLK,
 	input	wire 		HRESETn,
 	input	wire [31:0]	HADDR,
@@ -75,7 +84,7 @@ module EF_DAC1001_DI_ahbl (
 	reg	[1:0]	ICR_REG;
 	reg	[1:0]	IM_REG;
 
-	wire		EN	= CTRL_REG[0:0];
+	assign		EN	= CTRL_REG[0:0];	// hand edited
 	wire[4:0]	fifo_threshold	= FIFOT_REG[4:0];
 	wire		clk_en	= SAMPCTRL_REG[0:0];
 	wire[19:0]	clkdiv	= SAMPCTRL_REG[27:8];
@@ -103,9 +112,17 @@ module EF_DAC1001_DI_ahbl (
 		.EN(EN),
 		.low(low),
 		.empty(empty),
-		.VL(VL),
-		.VH(VH),
-		.OUT(OUT)
+		.RST(RST),
+		.SELD0(SELD0),
+		.SELD1(SELD1),
+		.SELD2(SELD2),
+		.SELD3(SELD3),
+		.SELD4(SELD4),
+		.SELD5(SELD5),
+		.SELD6(SELD6),
+		.SELD7(SELD7),
+		.SELD8(SELD8),
+		.SELD9 (SELD9 )
 	);
 
 	`AHB_REG(CTRL_REG, 0)

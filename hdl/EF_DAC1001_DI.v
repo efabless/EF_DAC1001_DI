@@ -148,10 +148,6 @@ module fifo #(parameter DW=8, AW=4)(
 endmodule
 
 module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
-    input wire                  VDD,
-    input wire                  VSS,
-    input wire                  DVDD,
-    input wire                  DVSS,
     input wire                  clk,
     input wire                  rst_n,
     input wire [9:0]            data,
@@ -162,9 +158,17 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
     output wire                 low,
     output wire                 empty,
     input wire                  EN,
-    input real                  VL,
-    input real                  VH,
-    output real                 OUT
+    output wire                 RST,
+    output wire                  SELD0,
+    output wire                  SELD1,
+    output wire                  SELD2,
+    output wire                  SELD3,
+    output wire                  SELD4,
+    output wire                  SELD5,
+    output wire                  SELD6,
+    output wire                  SELD7,
+    output wire                  SELD8,
+    output wire                  SELD9    
 );
     wire                fifo_wr = wr;
     reg                 fifo_rd;
@@ -174,17 +178,8 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
                         fifo_rdata;
     wire [FIFO_AW-1: 0] fifo_level;
 
-    wire    RST = fifo_rd;
-    wire    SELD0;
-    wire    SELD1;
-    wire    SELD2;
-    wire    SELD3;
-    wire    SELD4;
-    wire    SELD5;
-    wire    SELD6;
-    wire    SELD7;
-    wire    SELD8;
-    wire    SELD9;
+    assign   RST = fifo_rd;
+    
     wire    sample_en;
 
     assign      {SELD9, SELD8, SELD7, SELD6, SELD5, SELD4, SELD3, SELD2, SELD1, SELD0} = fifo_rdata;
@@ -220,27 +215,7 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
         .level (fifo_level)
     ); 
 
-    EF_DACSCA1001   DAC_AN (
-        .VDD(VDD),
-        .VSS(VSS),
-        .DVDD(DVDD),
-        .DVSS(DVSS),
-        .EN(EN),
-        .RST(RST),
-        .SELD0(SELD0),
-        .SELD1(SELD1),
-        .SELD2(SELD2),
-        .SELD3(SELD3),
-        .SELD4(SELD4),
-        .SELD5(SELD5),
-        .SELD6(SELD6),
-        .SELD7(SELD7),
-        .SELD8(SELD8),
-        .SELD9(SELD9),
-        .VL(VL),
-        .VH(VH),
-        .OUT(OUT)
-    );
+
 
     assign empty=   fifo_empty;
     assign low  =   (fifo_level < fifo_threshold);
