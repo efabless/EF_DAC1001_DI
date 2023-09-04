@@ -31,17 +31,27 @@ module EF_DAC1001_DI_ahbl_tb;
     wire [31:0]    HRDATA;
     
     wire            irq;
-    wire            OUT;
-    reg             VL = 0;
-    reg             VH = 1;
+    wire real            OUT;
+    real             VL = 0.0;
+    real             VH = 2.048;
     
+    wire 		SELD0;
+    wire 		SELD1;
+    wire 		SELD2;
+    wire 		SELD3;
+    wire 		SELD4;
+    wire 		SELD5;
+    wire 		SELD6;
+    wire 		SELD7;
+    wire 		SELD8;
+    wire 		SELD9;
+
+    wire        RST;
+    wire        EN;
+
     `include "AHB_tasks.vh"
 
     EF_DAC1001_DI_ahbl muv (
-
-        .OUT(OUT),
-        .VL(VL),
-        .VH(VH),
 	    .HCLK(HCLK),
         .HRESETn(HRESETn),
         .HSEL(HSEL),
@@ -53,15 +63,43 @@ module EF_DAC1001_DI_ahbl_tb;
         .HREADY(HREADY),
         .HREADYOUT(HREADYOUT),
         .HRDATA(HRDATA),
-	    .irq(irq)
+	    .irq(irq),
+        .SELD0(SELD0),
+        .SELD1(SELD1),
+        .SELD2(SELD2),
+        .SELD3(SELD3),
+        .SELD4(SELD4),
+        .SELD5(SELD5),
+        .SELD6(SELD6),
+        .SELD7(SELD7),
+        .SELD8(SELD8),
+        .SELD9(SELD9),
+        .RST(RST),
+        .EN(EN)
+    );
+
+    EF_DACSCA1001   DAC_AN (
+        .VDD(VDD),
+        .VSS(VSS),
+        .DVDD(DVDD),
+        .DVSS(DVSS),
+        .EN(EN),
+        .RST(RST),
+        .SELD0(SELD0),
+        .SELD1(SELD1),
+        .SELD2(SELD2),
+        .SELD3(SELD3),
+        .SELD4(SELD4),
+        .SELD5(SELD5),
+        .SELD6(SELD6),
+        .SELD7(SELD7),
+        .SELD8(SELD8),
+        .SELD9(SELD9),
+        .VL(VL),
+        .VH(VH),
+        .OUT(OUT)
     );
     
-    // To avoid limitation of syntheizing real wires, we will enforce VH and VL directly
-    initial begin
-        force muv.inst_to_wrap.DAC_AN.VL=0.0;
-        force muv.inst_to_wrap.DAC_AN.VH=2.048;
-    end
-
     initial begin
         $dumpfile("EF_DAC1001_DI_ahbl_tb.vcd");
         $dumpvars;
