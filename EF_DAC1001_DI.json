@@ -53,10 +53,10 @@
             "init": "0",
             "fields": [
                 {
-                    "name": "EN",
+                    "name": "en",
                     "from": "0",
                     "size": "1",
-                    "port": "EN"
+                    "port": "en"
                 }
             ]
         },
@@ -190,7 +190,8 @@
         {"name": "fifo_threshold", "size": "5", "dir" : "input"},
         {"name": "wr", "size": "1", "dir" : "input"},
         {"name": "clk_en", "size": "1", "dir" : "input"},
-        {"name": "EN", "size": "1", "dir" : "input"},
+        {"name": "en", "size": "1", "dir" : "input"},
+        {"name": "EN", "size": "1", "dir" : "output"},
         {"name": "low", "size": "1", "dir" : "output"},
         {"name": "empty", "size": "1", "dir" : "output"},
         {"name": "RST", "size": "1", "dir" : "output"},
