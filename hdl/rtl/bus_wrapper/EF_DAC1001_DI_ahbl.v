@@ -25,8 +25,8 @@
 `default_nettype	none
 
 `define		AHB_BLOCK(name, init)	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) name <= init;
-`define		AHB_REG(name, init)		`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR==``name``_ADDR)) name <= HWDATA;
-`define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
+`define		AHB_REG(name, init)		`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0] ==``name``_ADDR)) name <= HWDATA;
+`define		AHB_ICR(sz)				`AHB_BLOCK(ICR_REG, sz'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA; else ICR_REG <= sz'd0;
 
 module EF_DAC1001_DI_ahbl (
 	output	wire 		RST,
@@ -144,13 +144,13 @@ module EF_DAC1001_DI_ahbl (
 	assign irq = |MIS_REG;
 
 	assign	HRDATA = 
-			(last_HADDR == CTRL_REG_ADDR) ? CTRL_REG :
-			(last_HADDR == FIFOT_REG_ADDR) ? FIFOT_REG :
-			(last_HADDR == SAMPCTRL_REG_ADDR) ? SAMPCTRL_REG :
-			(last_HADDR == RIS_REG_ADDR) ? RIS_REG :
-			(last_HADDR == ICR_REG_ADDR) ? ICR_REG :
-			(last_HADDR == IM_REG_ADDR) ? IM_REG :
-			(last_HADDR == MIS_REG_ADDR) ? MIS_REG :
+			(last_HADDR[15:0] == CTRL_REG_ADDR) ? CTRL_REG :
+			(last_HADDR[15:0] == FIFOT_REG_ADDR) ? FIFOT_REG :
+			(last_HADDR[15:0] == SAMPCTRL_REG_ADDR) ? SAMPCTRL_REG :
+			(last_HADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
+			(last_HADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
+			(last_HADDR[15:0] == IM_REG_ADDR) ? IM_REG :
+			(last_HADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :
 			32'hDEADBEEF;
 
 
