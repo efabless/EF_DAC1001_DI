@@ -20,13 +20,7 @@ module EF_DACSCA1001 (
     output real OUT
 );
 
-    real    value;
-    wire real    num = {SELD9, SELD8, SELD7, SELD6, SELD5, SELD4, SELD3, SELD2, SELD1, SELD0};
-    wire #10 rst = RST;
-    always @(negedge rst)
-        value <= num;
-
-    //assign      OUT = (VDD & DVDD & ~VSS & ~DVSS & EN)  ?   (VH-VL)/1024.0*value    :   0.0 ;
+    wire real   value = {SELD9, SELD8, SELD7, SELD6, SELD5, SELD4, SELD3, SELD2, SELD1, SELD0};
     assign      OUT = (EN)  ?   (VH-VL)/1024.0*value    :   0.0 ;
 
 endmodule
