@@ -179,7 +179,7 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
                         fifo_rdata;
     wire [FIFO_AW-1: 0] fifo_level;
 
-    assign    RST = fifo_rd;
+    assign    RST = ~rst_n; //fifo_rd;
     assign    EN = en;
     
     wire    sample_en;
