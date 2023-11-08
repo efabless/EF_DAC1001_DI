@@ -32,7 +32,7 @@ module clock_divider #(parameter CLKDIV_WIDTH = 8)(
 
 endmodule
 
-module fifo #(parameter DW=8, AW=4)(
+module fifo_dac #(parameter DW=8, AW=4)(
     input     wire            clk,
     input     wire            rst_n,
     input     wire            rd,
@@ -205,7 +205,7 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
         .clko(sample_en)
     );
 
-    fifo  #(.DW(10), .AW(FIFO_AW)) DACFIFO (
+    fifo_dac  #(.DW(10), .AW(FIFO_AW)) DACFIFO (
         .clk(clk),
         .rst_n(rst_n),
         .rd(fifo_rd),
