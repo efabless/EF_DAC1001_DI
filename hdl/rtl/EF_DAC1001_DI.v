@@ -1,4 +1,4 @@
-module clock_divider #(parameter CLKDIV_WIDTH = 8)(
+module clock_divider_dac #(parameter CLKDIV_WIDTH = 8)(
     input wire clk,
     input wire rst_n,
     input wire en,
@@ -197,7 +197,7 @@ module EF_DAC1001_DI #(parameter FIFO_AW = 5) (
                 fifo_rd <= 1'b1;
 
     // Clock Dividers
-    clock_divider #(.CLKDIV_WIDTH(20)) CLKDIV (
+    clock_divider_dac #(.CLKDIV_WIDTH(20)) CLKDIV (
         .clk(clk),
         .rst_n(rst_n),
         .en(clk_en & EN),
